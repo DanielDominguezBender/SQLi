@@ -2,11 +2,11 @@
 
 On this repository I will show a little example of a SQL Injection.
 
-<b>What I want to achieve?</b>
+## What I want to achieve?
 
 I want to see if I’m able get confidential data from a web app by interfering with queries. 
 
-<b>How I will achieve it?</b>
+## How I will achieve it?
 
 By using SQL attacks to a simple web that connects to a MySQL DB.
 
@@ -20,7 +20,7 @@ The USERS table contains the following user information:
 - Account ID
 - News ID
   
-![sql_1](sql_1.png)
+![sql_1](imgs/sql_1.png)
 
 The News table contains:
 - News ID
@@ -28,13 +28,19 @@ The News table contains:
 - News Text
 - Date
 
-![sql_2](sql_2.png)
+![sql_2](imgs/sql_2.png)
 
-<b>Web environment creation:</b>
+<b>Web environment creation</b><br>
 I’ve used Visual Studio Code with a PHP extension. The code will be available separately in this repo.
 
-Differences between SQLi and BLIND SQLi?
-SQLi (SQL Injection) and Blind SQLi (Blind SQL Injection) are both types of security vulnerabilities that occur in web applications and can be exploited by attackers to gain unauthorized access to a database or retrieve sensitive information. However, they differ in how they are executed and the level of information an attacker can extract.
+![sql_3](imgs/sql_3.png)
+
+Before proceeding further on my example, I would like to explain I bit what exactly is SQLi and the differences it has with Blind SQLi.
+
+## SQLi vs BLIND SQLi?
+
+SQLi (SQL Injection) and Blind SQLi (Blind SQL Injection) are both types of security vulnerabilities that occur in web applications and can be exploited by attackers to gain unauthorized access to a database or retrieve sensitive information. However, they differ in how they are executed and the level of information an attacker can extract.  
+
 SQL Injection (SQLi): SQL Injection is a common web application vulnerability that occurs when an attacker can manipulate or inject malicious SQL code into an application's input fields. This happens when the application does not properly validate or sanitize user input before using it in SQL queries. As a result, the attacker can modify the SQL query to execute arbitrary database commands.
 Example: Consider a login form where a user enters their username and password. If the application does not validate user input properly, an attacker can enter the following in the password field:
 ```
@@ -50,3 +56,5 @@ Example: In a blind SQLi attack, an attacker may inject code that checks whether
 ```
 The attacker may not see the query results, but if the application behaves differently when the condition is true (e.g., a page loads successfully) or false (e.g., an error message appears), they can deduce information about the database structure or data.
 In summary, the main difference between SQL Injection and Blind SQL Injection is in how the attacker interacts with the application's response. SQL Injection allows the attacker to directly see and manipulate the query results, while Blind SQL Injection relies on the attacker inferring information from the application's behavior without direct access to the results. Both vulnerabilities are serious security threats and should be mitigated through proper input validation and parameterized queries in web applications.
+
+
