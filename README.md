@@ -35,6 +35,33 @@ I’ve used Visual Studio Code with a PHP extension. The code will be available 
 
 ![sql_3](imgs/sql_3.png)
 
+A local version of the web can be laucnhed via the PHP extenison in Visual Studio Code:
+
+![sql_4](imgs/sql_4.png)
+
+The INDEX of the page would look like this:
+
+![sql_5](imgs/sql_5.png)
+
+Snapshot of part of the code:
+
+```
+<?php
+// Get parameter
+$id=$_GET['id'];
+$sql = "SELECT * FROM News WHERE Id=$id;";
+$result = mysqli_query($conn, $sql);
+$resultCheck = mysqli_num_rows($result);
+if ($resultCheck > 0){
+while($row = mysqli_fetch_assoc($result)){
+echo $row['Title']."<br><br>";;
+echo $row['DateTime']."<br><br>";
+echo $row['Body']."<br>";
+}
+}
+?>
+```
+
 Before proceeding further on my example, I would like to explain I bit what exactly is SQLi and the differences it has with Blind SQLi.
 
 ## SQLi vs BLIND SQLi?
@@ -56,5 +83,13 @@ Example: In a blind SQLi attack, an attacker may inject code that checks whether
 ```
 The attacker may not see the query results, but if the application behaves differently when the condition is true (e.g., a page loads successfully) or false (e.g., an error message appears), they can deduce information about the database structure or data.
 In summary, the main difference between SQL Injection and Blind SQL Injection is in how the attacker interacts with the application's response. SQL Injection allows the attacker to directly see and manipulate the query results, while Blind SQL Injection relies on the attacker inferring information from the application's behavior without direct access to the results. Both vulnerabilities are serious security threats and should be mitigated through proper input validation and parameterized queries in web applications.
+
+So, after this short explanation, let's go back to track! 😄
+
+After setting the environment for this lab, I had to answer a set of questions.
+
+1) Create a view or page to show a specific news item to through a parameter called id. This parameter will be consulted via an HTTP GET method. As an example, the following is indicated http://localhost/news?id=3, where id is the attribute of the News table and the value 3 corresponds to a table record. For example:
+
+![sql_6](imgs/sql_6.png)
 
 
