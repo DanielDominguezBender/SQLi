@@ -2,31 +2,35 @@
 
 On this repository I will show a little example of a SQL Injection.
 
-<br>What I want to achieve?</br>
+<b>What I want to achieve?</b>
 
 I want to see if I’m able get confidential data from a web app by interfering with queries. 
 
-<br>How I will achieve it?</b>
+<b>How I will achieve it?</b>
 
 By using SQL attacks to a simple web that connects to a MySQL DB.
 
-<br>Procedure:</br>
+<b>DB creation</b>
 
 I’ve created the data base using MySQL Workbench 8.0. The DB consists of 2 basic tables, USERS and NEWS.
 The USERS table contains the following user information:
-Email Address
-    • User Name
-    • Password
-    • Account ID
-    • News ID
+- Email Address
+- User Name
+- Password
+- Account ID
+- News ID
+  
 ![sql_1](sql_1.png)
+
 The News table contains:
-    • News ID
-    • News Title
-    • News Text
-    • Date
+- News ID
+- News Title
+- News Text
+- Date
+
 ![sql_2](sql_2.png)
-Web environment creation:
+
+<b>Web environment creation:</b>
 I’ve used Visual Studio Code with a PHP extension. The code will be available separately in this repo.
 
 Differences between SQLi and BLIND SQLi?
