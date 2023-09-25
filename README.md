@@ -35,7 +35,7 @@ I’ve used Visual Studio Code with a PHP extension. The code will be available 
 
 ![sql_3](imgs/sql_3.png)
 
-A local version of the web can be laucnhed via the PHP extenison in Visual Studio Code:
+A local version of the web can be launched via the PHP extension in Visual Studio Code:
 
 ![sql_4](imgs/sql_4.png)
 
