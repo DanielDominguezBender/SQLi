@@ -88,7 +88,8 @@ So, after this short explanation, let's go back to track! 😄
 
 After setting the environment for this lab, I had to answer a set of questions.
 
-Question: Create a view or page to show a specific news item to through a parameter called id. This parameter will be consulted via an HTTP GET method. As an example, the following is indicated http://localhost/news?id=3, where id is the attribute of the News table and the value 3 corresponds to a table record. For example:
+Question: Create a view or page to show a specific news item to through a parameter called id. This parameter will be consulted via an HTTP GET method. As an example, the following is indicated http://localhost/news?id=3, where id is the attribute of the News table and the value 3 corresponds to a table record. The id parameter must be vulnerable to a BLIND SQL injection. Is important to prove that the application is vulnerable to blind SQL, but it is NOT a “normal” SQL injection.
+Also note that the application should be interacting only with the “News” table of the database, and not with the "Users" table. For example:
 
 ![sql_6](imgs/sql_6.png)
 
