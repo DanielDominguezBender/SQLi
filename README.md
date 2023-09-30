@@ -68,15 +68,14 @@ Before proceeding further on my example, I would like to explain I bit what exac
 
 SQLi (SQL Injection) and Blind SQLi (Blind SQL Injection) are both types of security vulnerabilities that occur in web applications and can be exploited by attackers to gain unauthorized access to a database or retrieve sensitive information. However, they differ in how they are executed and the level of information an attacker can extract.  
 
-SQL Injection (SQLi): SQL Injection is a common web application vulnerability that occurs when an attacker can manipulate or inject malicious SQL code into an application's input fields. This happens when the application does not properly validate or sanitize user input before using it in SQL queries. As a result, the attacker can modify the SQL query to execute arbitrary database commands.
+<b>SQL Injection (SQLi):</b> SQL Injection is a common web application vulnerability that occurs when an attacker can manipulate or inject malicious SQL code into an application's input fields. This happens when the application does not properly validate or sanitize user input before using it in SQL queries. As a result, the attacker can modify the SQL query to execute arbitrary database commands.  
 Example: Consider a login form where a user enters their username and password. If the application does not validate user input properly, an attacker can enter the following in the password field:
 ```
 ' OR '1'='1
 ```
-
 If the application concatenates the input directly into the SQL query, this input would make the query always return true, allowing the attacker to log in without a valid password.
 
-Blind SQL Injection (Blind SQLi): Blind SQL Injection is a variation of SQL Injection where the application does not directly display the results of the SQL query to the attacker. In this case, the attacker can still inject malicious SQL code, but they may not see the results directly. Instead, they use Boolean-based or time-based techniques to infer information from the application's behavior.
+<b>Blind SQL Injection (Blind SQLi):</b> Blind SQL Injection is a variation of SQL Injection where the application does not directly display the results of the SQL query to the attacker. In this case, the attacker can still inject malicious SQL code, but they may not see the results directly. Instead, they use Boolean-based or time-based techniques to infer information from the application's behavior.  
 Example: In a blind SQLi attack, an attacker may inject code that checks whether a specific condition is true or false. For instance:
 ```
 ' OR 1=1 --
@@ -85,12 +84,36 @@ The attacker may not see the query results, but if the application behaves diffe
 In summary, the main difference between SQL Injection and Blind SQL Injection is in how the attacker interacts with the application's response. SQL Injection allows the attacker to directly see and manipulate the query results, while Blind SQL Injection relies on the attacker inferring information from the application's behavior without direct access to the results. Both vulnerabilities are serious security threats and should be mitigated through proper input validation and parameterized queries in web applications.
 
 So, after this short explanation, let's go back to track! 😄
+As previously explained, the main purpose of this repository was to show a little example on how an SQLi attack behave.
+On the following image we can see a typical NEWS page.
 
-After setting the environment for this lab, I had to answer a set of questions.
+![sql_9](imgs/sql_9.png)
 
-Question: Create a view or page to show a specific news item to through a parameter called id. This parameter will be consulted via an HTTP GET method. As an example, the following is indicated http://localhost/news?id=3, where id is the attribute of the News table and the value 3 corresponds to a table record. The id parameter must be vulnerable to a BLIND SQL injection. Is important to prove that the application is vulnerable to blind SQL, but it is NOT a “normal” SQL injection.
-Also note that the application should be interacting only with the “News” table of the database, and not with the "Users" table. For example:
+As you can see, on the URL it shows the ID related to PIZZAGATE.
+```
+/news.php?id=2
+```
+Now let's check if the web app is vulnerable and that it can be explotable with SQLi.
+Let's try playing around with some SQL statements on the URL.
 
-![sql_6](imgs/sql_6.png)
+First I will try to use some TRUE statements.
+```
+[...]?id=2 and 1=1
+```
+![sql_10](imgs/sql_10.png)
 
+```
+[...]?id=2 or 1=10
+```
+![sql_11](imgs/sql_11.png)
 
+Now I will try with some FALSE statements (it should not show any information).
+
+![sql_12](imgs/sql_12.png)
+
+After this testing, I arrived to the following conclusion:
+
+- That applying <i>true</i> statements it showed the information related to the ID.
+- That pplying <i>false</i> statements I was not able to get any relevant information.
+
+Which means that this web app is vulnerable to BLIND SQLi attacks. :sunglasses:
